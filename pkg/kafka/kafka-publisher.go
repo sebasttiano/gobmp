@@ -226,6 +226,7 @@ func validator(addr string) error {
 
 func ensureTopic(br *sarama.Broker, timeout time.Duration, topicName string) error {
 	topic := &sarama.CreateTopicsRequest{
+		Timeout: 100 * time.Millisecond,
 		TopicDetails: map[string]*sarama.TopicDetail{
 			topicName: {
 				NumPartitions:     1,

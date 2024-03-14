@@ -1,12 +1,26 @@
 REGISTRY_NAME?=docker.io/sbezverk
 IMAGE_VERSION?=0.0.0
-
 .PHONY: all gobmp player container push clean test lint
+export OS
 
 ifdef V
 TESTARGS = -v -args -alsologtostderr -v 5
 else
 TESTARGS =
+endif
+
+UNAME := $(shell uname)
+
+ifeq ($(UNAME), Linux)
+OS = linux
+endif
+ifeq ($(UNAME), Darwin)
+OS = darwin
+endif
+
+# default OS
+ifndef OS
+OS = linux
 endif
 
 all: gobmp validator
@@ -22,10 +36,6 @@ player:
 validator:
 	mkdir -p bin
 	$(MAKE) -C ./cmd/validator compile-validator
-
-validator-mac:
-	mkdir -p bin
-	$(MAKE) -C ./cmd/validator compile-validator-mac
 
 container: gobmp
 	docker build -t $(REGISTRY_NAME)/gobmp:$(IMAGE_VERSION) -f ./build/Dockerfile.gobmp .
