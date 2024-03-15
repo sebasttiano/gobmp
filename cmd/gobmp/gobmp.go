@@ -22,15 +22,18 @@ import (
 )
 
 var (
-	dstPort   int
-	srcPort   int
-	perfPort  int
-	kafkaSrv  string
-	natsSrv   string
-	intercept string
-	splitAF   string
-	dump      string
-	file      string
+	dstPort    int
+	srcPort    int
+	perfPort   int
+	kafkaSrv   string
+	kafkaTopic string
+	kafkaUser  string
+	kafkaPass  string
+	natsSrv    string
+	intercept  string
+	splitAF    string
+	dump       string
+	file       string
 )
 
 func init() {
@@ -38,6 +41,9 @@ func init() {
 	flag.IntVar(&srcPort, "source-port", 5000, "port exposed to outside")
 	flag.IntVar(&dstPort, "destination-port", 5050, "port openBMP is listening")
 	flag.StringVar(&kafkaSrv, "kafka-server", "", "URL to access Kafka server")
+	flag.StringVar(&kafkaTopic, "kafka-topic", "", "Kafka topic name")
+	flag.StringVar(&kafkaUser, "kafka-user", "", "Kafka username")
+	flag.StringVar(&kafkaPass, "kafka-pass", "", "Kafka password")
 	flag.StringVar(&natsSrv, "nats-server", "", "URL to access NATS server")
 	flag.StringVar(&intercept, "intercept", "false", "When intercept set \"true\", all incomming BMP messges will be copied to TCP port specified by destination-port, otherwise received BMP messages will be published to Kafka.")
 	flag.StringVar(&splitAF, "split-af", "true", "When set \"true\" (default) ipv4 and ipv6 will be published in separate topics. if set \"false\" the same topic will be used for both address families.")
@@ -79,7 +85,12 @@ func main() {
 		}
 		glog.V(5).Infof("NATS publisher has been successfully initialized.")
 	default:
-		publisher, err = kafka.NewKafkaPublisher(kafkaSrv)
+
+		if kafkaTopic != "" {
+			publisher, err = kafka.NewKafkaSinglePublisher(kafkaUser, kafkaPass, kafkaTopic, kafkaSrv)
+		} else {
+			publisher, err = kafka.NewKafkaPublisher(kafkaSrv)
+		}
 		if err != nil {
 			glog.Errorf("failed to initialize Kafka publisher with error: %+v", err)
 			os.Exit(1)
