@@ -4,8 +4,8 @@ import (
 	"encoding/binary"
 
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/srv6"
 	"github.com/sbezverk/tools"
+	"github.com/sebasttiano/gobmp/pkg/srv6"
 )
 
 // LabelIndexTLV defines Label index TLV

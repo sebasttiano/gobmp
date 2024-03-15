@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/sbezverk/gobmp/pkg/srv6"
+	"github.com/sebasttiano/gobmp/pkg/srv6"
 )
 
 func TestUnmarshalBGPAttrPrefixSID(t *testing.T) {

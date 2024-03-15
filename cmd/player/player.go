@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/filer"
-	"github.com/sbezverk/gobmp/pkg/kafka"
 	"github.com/sbezverk/tools"
+	"github.com/sebasttiano/gobmp/pkg/filer"
+	"github.com/sebasttiano/gobmp/pkg/kafka"
 )
 
 var (

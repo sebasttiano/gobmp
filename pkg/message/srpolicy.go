@@ -3,9 +3,9 @@ package message
 import (
 	"fmt"
 
-	"github.com/sbezverk/gobmp/pkg/bgp"
-	"github.com/sbezverk/gobmp/pkg/bmp"
-	"github.com/sbezverk/gobmp/pkg/srpolicy"
+	"github.com/sebasttiano/gobmp/pkg/bgp"
+	"github.com/sebasttiano/gobmp/pkg/bmp"
+	"github.com/sebasttiano/gobmp/pkg/srpolicy"
 )
 
 // evpn process MP_REACH_NLRI AFI 25 SAFI 70 update message and returns

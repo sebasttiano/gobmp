@@ -1,6 +1,6 @@
 package evpn
 
-import "github.com/sbezverk/gobmp/pkg/base"
+import "github.com/sebasttiano/gobmp/pkg/base"
 
 // InclusiveMulticastEthTag defines a structure of Route type 3
 // (Inclusive Multicast Ethernet Tag Route type)

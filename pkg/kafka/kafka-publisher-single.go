@@ -4,7 +4,7 @@ import (
 	"crypto/sha512"
 	"github.com/IBM/sarama"
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/pub"
+	"github.com/sebasttiano/gobmp/pkg/pub"
 	"github.com/xdg-go/scram"
 	"log"
 	"os"

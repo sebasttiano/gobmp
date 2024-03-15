@@ -4,15 +4,15 @@ import (
 	"reflect"
 	"strconv"
 
-	"github.com/sbezverk/gobmp/pkg/base"
-	"github.com/sbezverk/gobmp/pkg/bgp"
-	"github.com/sbezverk/gobmp/pkg/bgpls"
-	"github.com/sbezverk/gobmp/pkg/flowspec"
-	"github.com/sbezverk/gobmp/pkg/prefixsid"
-	"github.com/sbezverk/gobmp/pkg/sr"
-	"github.com/sbezverk/gobmp/pkg/srpolicy"
-	"github.com/sbezverk/gobmp/pkg/srv6"
 	"github.com/sbezverk/tools/sort"
+	"github.com/sebasttiano/gobmp/pkg/base"
+	"github.com/sebasttiano/gobmp/pkg/bgp"
+	"github.com/sebasttiano/gobmp/pkg/bgpls"
+	"github.com/sebasttiano/gobmp/pkg/flowspec"
+	"github.com/sebasttiano/gobmp/pkg/prefixsid"
+	"github.com/sebasttiano/gobmp/pkg/sr"
+	"github.com/sebasttiano/gobmp/pkg/srpolicy"
+	"github.com/sebasttiano/gobmp/pkg/srv6"
 )
 
 // PeerStateChange defines a message format sent to as a result of BMP Peer Up or Peer Down message

@@ -6,9 +6,9 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/sbezverk/gobmp/pkg/base"
-	"github.com/sbezverk/gobmp/pkg/bgpls"
-	"github.com/sbezverk/gobmp/pkg/sr"
+	"github.com/sebasttiano/gobmp/pkg/base"
+	"github.com/sebasttiano/gobmp/pkg/bgpls"
+	"github.com/sebasttiano/gobmp/pkg/sr"
 )
 
 func TestRoundTripLSPrefix(t *testing.T) {

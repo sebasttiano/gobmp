@@ -5,8 +5,8 @@ import (
 	"net"
 
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/bgp"
-	"github.com/sbezverk/gobmp/pkg/bmp"
+	"github.com/sebasttiano/gobmp/pkg/bgp"
+	"github.com/sebasttiano/gobmp/pkg/bmp"
 )
 
 // evpn process MP_REACH_NLRI AFI 25 SAFI 70 update message and returns

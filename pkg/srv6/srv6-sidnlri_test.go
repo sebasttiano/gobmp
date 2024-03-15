@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/sbezverk/gobmp/pkg/base"
+	"github.com/sebasttiano/gobmp/pkg/base"
 )
 
 func TestUnmarshalSIDNLRI(t *testing.T) {

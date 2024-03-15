@@ -3,9 +3,9 @@ package ls
 import (
 	"testing"
 
-	"github.com/sbezverk/gobmp/pkg/base"
-	"github.com/sbezverk/gobmp/pkg/srv6"
-	"github.com/sbezverk/gobmp/pkg/te"
+	"github.com/sebasttiano/gobmp/pkg/base"
+	"github.com/sebasttiano/gobmp/pkg/srv6"
+	"github.com/sebasttiano/gobmp/pkg/te"
 )
 
 func TestLSNLRI71(t *testing.T) {

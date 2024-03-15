@@ -1,4 +1,4 @@
-module github.com/sbezverk/gobmp
+module github.com/sebasttiano/gobmp
 
 go 1.19
 
@@ -12,6 +12,7 @@ require (
 
 require (
 	github.com/IBM/sarama v1.43.0 // indirect
+	github.com/caarlos0/env/v6 v6.10.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/eapache/go-resiliency v1.6.0 // indirect
 	github.com/eapache/go-xerial-snappy v0.0.0-20230731223053-c322873962e3 // indirect

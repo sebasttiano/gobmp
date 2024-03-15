@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/sbezverk/gobmp/pkg/bgp"
+	"github.com/sebasttiano/gobmp/pkg/bgp"
 )
 
 func TestPeerUpMsg(t *testing.T) {

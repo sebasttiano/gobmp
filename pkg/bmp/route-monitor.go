@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/bgp"
 	"github.com/sbezverk/tools"
+	"github.com/sebasttiano/gobmp/pkg/bgp"
 )
 
 // RouteMonitor defines a structure of BMP Route Monitoring message

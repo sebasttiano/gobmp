@@ -6,7 +6,7 @@ import (
 	"net"
 
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/bmp"
+	"github.com/sebasttiano/gobmp/pkg/bmp"
 )
 
 func (p *producer) producePeerMessage(op int, msg bmp.Message) {

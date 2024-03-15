@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/bmp"
+	"github.com/sebasttiano/gobmp/pkg/bmp"
 )
 
 // produceStatsMessage proceduces message from BMP Statistic Message

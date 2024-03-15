@@ -3,7 +3,7 @@ package evpn
 import (
 	"fmt"
 
-	"github.com/sbezverk/gobmp/pkg/base"
+	"github.com/sebasttiano/gobmp/pkg/base"
 )
 
 // IPPrefix defines a structure of Route type 5

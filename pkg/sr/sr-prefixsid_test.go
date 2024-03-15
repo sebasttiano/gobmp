@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/sbezverk/gobmp/pkg/base"
+	"github.com/sebasttiano/gobmp/pkg/base"
 )
 
 func TestUnmarshalPrefixSIDTLV(t *testing.T) {

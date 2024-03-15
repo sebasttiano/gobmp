@@ -1,8 +1,8 @@
 package main
 
 import (
-	"flag"
 	"fmt"
+	"github.com/sebasttiano/gobmp/pkg/config"
 	"os"
 	"runtime"
 	"strconv"
@@ -12,59 +12,37 @@ import (
 	_ "net/http/pprof"
 
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/dumper"
-	"github.com/sbezverk/gobmp/pkg/filer"
-	"github.com/sbezverk/gobmp/pkg/gobmpsrv"
-	"github.com/sbezverk/gobmp/pkg/kafka"
-	"github.com/sbezverk/gobmp/pkg/nats"
-	"github.com/sbezverk/gobmp/pkg/pub"
 	"github.com/sbezverk/tools"
-)
-
-var (
-	dstPort    int
-	srcPort    int
-	perfPort   int
-	kafkaSrv   string
-	kafkaTopic string
-	kafkaUser  string
-	kafkaPass  string
-	natsSrv    string
-	intercept  string
-	splitAF    string
-	dump       string
-	file       string
+	"github.com/sebasttiano/gobmp/pkg/dumper"
+	"github.com/sebasttiano/gobmp/pkg/filer"
+	"github.com/sebasttiano/gobmp/pkg/gobmpsrv"
+	"github.com/sebasttiano/gobmp/pkg/kafka"
+	"github.com/sebasttiano/gobmp/pkg/nats"
+	"github.com/sebasttiano/gobmp/pkg/pub"
 )
 
 func init() {
 	runtime.GOMAXPROCS(1)
-	flag.IntVar(&srcPort, "source-port", 5000, "port exposed to outside")
-	flag.IntVar(&dstPort, "destination-port", 5050, "port openBMP is listening")
-	flag.StringVar(&kafkaSrv, "kafka-server", "", "URL to access Kafka server")
-	flag.StringVar(&kafkaTopic, "kafka-topic", "", "Kafka topic name")
-	flag.StringVar(&kafkaUser, "kafka-user", "", "Kafka username")
-	flag.StringVar(&kafkaPass, "kafka-pass", "", "Kafka password")
-	flag.StringVar(&natsSrv, "nats-server", "", "URL to access NATS server")
-	flag.StringVar(&intercept, "intercept", "false", "When intercept set \"true\", all incomming BMP messges will be copied to TCP port specified by destination-port, otherwise received BMP messages will be published to Kafka.")
-	flag.StringVar(&splitAF, "split-af", "true", "When set \"true\" (default) ipv4 and ipv6 will be published in separate topics. if set \"false\" the same topic will be used for both address families.")
-	flag.IntVar(&perfPort, "performance-port", 56767, "port used for performance debugging")
-	flag.StringVar(&dump, "dump", "", "Dump resulting messages to file when \"dump=file\", to standard output when \"dump=console\" or to NATS when \"dump=nats\"")
-	flag.StringVar(&file, "msg-file", "/tmp/messages.json", "Full path anf file name to store messages when \"dump=file\"")
 }
 
 func main() {
-	flag.Parse()
-	_ = flag.Set("logtostderr", "true")
+
+	cfg, err := config.NewConfig()
+	if err != nil {
+		glog.Error("parsing config failed")
+		return
+	}
+
 	// Starting performance collecting http server
 	go func() {
-		glog.Info(http.ListenAndServe(fmt.Sprintf(":%d", perfPort), nil))
+		glog.Info(http.ListenAndServe(fmt.Sprintf(":%d", cfg.PerfPort), nil))
 	}()
 	// Initializing publisher
 	var publisher pub.Publisher
-	var err error
-	switch strings.ToLower(dump) {
+	//var err error
+	switch strings.ToLower(cfg.Dump) {
 	case "file":
-		publisher, err = filer.NewFiler(file)
+		publisher, err = filer.NewFiler(cfg.File)
 		if err != nil {
 			glog.Errorf("failed to initialize file publisher with error: %+v", err)
 			os.Exit(1)
@@ -78,7 +56,7 @@ func main() {
 		}
 		glog.V(5).Infof("console publisher has been successfully initialized.")
 	case "nats":
-		publisher, err = nats.NewPublisher(natsSrv)
+		publisher, err = nats.NewPublisher(cfg.NatsSrv)
 		if err != nil {
 			glog.Errorf("failed to initialize NATS publisher with error: %+v", err)
 			os.Exit(1)
@@ -86,10 +64,10 @@ func main() {
 		glog.V(5).Infof("NATS publisher has been successfully initialized.")
 	default:
 
-		if kafkaTopic != "" {
-			publisher, err = kafka.NewKafkaSinglePublisher(kafkaUser, kafkaPass, kafkaTopic, kafkaSrv)
+		if cfg.KafkaTopic != "" {
+			publisher, err = kafka.NewKafkaSinglePublisher(cfg.KafkaUser, cfg.KafkaPass, cfg.KafkaTopic, cfg.KafkaSrv)
 		} else {
-			publisher, err = kafka.NewKafkaPublisher(kafkaSrv)
+			publisher, err = kafka.NewKafkaPublisher(cfg.KafkaSrv)
 		}
 		if err != nil {
 			glog.Errorf("failed to initialize Kafka publisher with error: %+v", err)
@@ -99,17 +77,17 @@ func main() {
 	}
 
 	// Initializing bmp server
-	interceptFlag, err := strconv.ParseBool(intercept)
+	interceptFlag, err := strconv.ParseBool(cfg.Intercept)
 	if err != nil {
 		glog.Errorf("failed to parse to bool the value of the intercept flag with error: %+v", err)
 		os.Exit(1)
 	}
-	splitAFFlag, err := strconv.ParseBool(splitAF)
+	splitAFFlag, err := strconv.ParseBool(cfg.SplitAF)
 	if err != nil {
 		glog.Errorf("failed to parse to bool the value of the intercept flag with error: %+v", err)
 		os.Exit(1)
 	}
-	bmpSrv, err := gobmpsrv.NewBMPServer(srcPort, dstPort, interceptFlag, publisher, splitAFFlag)
+	bmpSrv, err := gobmpsrv.NewBMPServer(cfg.SrcPort, cfg.DstPort, interceptFlag, publisher, splitAFFlag)
 	if err != nil {
 		glog.Errorf("failed to setup new gobmp server with error: %+v", err)
 		os.Exit(1)

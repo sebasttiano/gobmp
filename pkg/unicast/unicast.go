@@ -6,8 +6,8 @@ import (
 	"fmt"
 
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/base"
 	"github.com/sbezverk/tools"
+	"github.com/sebasttiano/gobmp/pkg/base"
 )
 
 // UnmarshalUnicastNLRI builds MP NLRI object from the slice of bytes

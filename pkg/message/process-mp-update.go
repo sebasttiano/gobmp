@@ -2,10 +2,10 @@ package message
 
 import (
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/base"
-	"github.com/sbezverk/gobmp/pkg/bgp"
-	"github.com/sbezverk/gobmp/pkg/bmp"
-	"github.com/sbezverk/gobmp/pkg/srv6"
+	"github.com/sebasttiano/gobmp/pkg/base"
+	"github.com/sebasttiano/gobmp/pkg/bgp"
+	"github.com/sebasttiano/gobmp/pkg/bmp"
+	"github.com/sebasttiano/gobmp/pkg/srv6"
 )
 
 func (p *producer) processMPUpdate(nlri bgp.MPNLRI, operation int, ph *bmp.PerPeerHeader, update *bgp.Update) {

@@ -8,9 +8,9 @@ import (
 	"time"
 
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/bmp"
-	"github.com/sbezverk/gobmp/pkg/kafka"
-	"github.com/sbezverk/gobmp/pkg/validator"
+	"github.com/sebasttiano/gobmp/pkg/bmp"
+	"github.com/sebasttiano/gobmp/pkg/kafka"
+	"github.com/sebasttiano/gobmp/pkg/validator"
 )
 
 var (

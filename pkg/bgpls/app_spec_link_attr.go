@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/base"
 	"github.com/sbezverk/tools"
+	"github.com/sebasttiano/gobmp/pkg/base"
 )
 
 // https://tools.ietf.org/html/draft-ietf-idr-bgp-ls-app-specific-attr-03#section-2

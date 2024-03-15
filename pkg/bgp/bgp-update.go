@@ -7,9 +7,9 @@ import (
 	"fmt"
 
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/bgpls"
-	"github.com/sbezverk/gobmp/pkg/prefixsid"
 	"github.com/sbezverk/tools"
+	"github.com/sebasttiano/gobmp/pkg/bgpls"
+	"github.com/sebasttiano/gobmp/pkg/prefixsid"
 )
 
 const (
