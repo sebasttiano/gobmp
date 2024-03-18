@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/sbezverk/gobmp/pkg/pub"
+	"github.com/sebasttiano/gobmp/pkg/pub"
 )
 
 // MsgOut defines structure of the message stored in the file.

@@ -2,8 +2,8 @@ package message
 
 import (
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/bmp"
-	"github.com/sbezverk/gobmp/pkg/pub"
+	"github.com/sebasttiano/gobmp/pkg/bmp"
+	"github.com/sebasttiano/gobmp/pkg/pub"
 )
 
 const (

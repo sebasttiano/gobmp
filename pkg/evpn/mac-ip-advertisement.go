@@ -1,6 +1,6 @@
 package evpn
 
-import "github.com/sbezverk/gobmp/pkg/base"
+import "github.com/sebasttiano/gobmp/pkg/base"
 
 // MACIPAdvertisement defines a structure of Route type 2
 // (MAC IP Advertisement route)

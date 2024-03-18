@@ -5,8 +5,8 @@ import (
 	"net"
 
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/bgp"
 	"github.com/sbezverk/tools"
+	"github.com/sebasttiano/gobmp/pkg/bgp"
 )
 
 // PeerUpMessage defines BMPPeerUpMessage per rfc7854

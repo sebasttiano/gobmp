@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/base"
 	"github.com/sbezverk/tools"
+	"github.com/sebasttiano/gobmp/pkg/base"
 )
 
 // RouteTypeSpec defines a method to get a route type specific information

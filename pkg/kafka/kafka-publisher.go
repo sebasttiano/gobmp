@@ -10,10 +10,10 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/Shopify/sarama"
+	"github.com/IBM/sarama"
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/bmp"
-	"github.com/sbezverk/gobmp/pkg/pub"
+	"github.com/sebasttiano/gobmp/pkg/bmp"
+	"github.com/sebasttiano/gobmp/pkg/pub"
 )
 
 // Define constants for each topic name
@@ -181,18 +181,7 @@ func NewKafkaPublisher(kafkaSrv string) (pub.Publisher, error) {
 	}
 	glog.V(5).Infof("Initialized Kafka Async producer")
 	stopCh := make(chan struct{})
-	go func(producer sarama.AsyncProducer, stopCh <-chan struct{}) {
-		for {
-			select {
-			case <-producer.Successes():
-			case err := <-producer.Errors():
-				glog.Errorf("failed to produce message with error: %+v", *err)
-			case <-stopCh:
-				producer.Close()
-				return
-			}
-		}
-	}(producer, stopCh)
+	go readErrors(producer, stopCh)
 
 	return &publisher{
 		stopCh:   stopCh,
@@ -226,6 +215,7 @@ func validator(addr string) error {
 
 func ensureTopic(br *sarama.Broker, timeout time.Duration, topicName string) error {
 	topic := &sarama.CreateTopicsRequest{
+		Timeout: 100 * time.Millisecond,
 		TopicDetails: map[string]*sarama.TopicDetail{
 			topicName: {
 				NumPartitions:     1,

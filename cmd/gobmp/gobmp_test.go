@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/sbezverk/gobmp/pkg/bmp"
+	"github.com/sebasttiano/gobmp/pkg/bmp"
 )
 
 func TestMain(m *testing.M) {

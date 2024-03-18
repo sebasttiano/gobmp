@@ -5,8 +5,8 @@ import (
 	"fmt"
 
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/base"
 	"github.com/sbezverk/tools"
+	"github.com/sebasttiano/gobmp/pkg/base"
 )
 
 // PolicyDescriptor defines the TE Policy Descriptors TLVs which are used

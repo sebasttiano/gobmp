@@ -6,8 +6,8 @@ import (
 	"fmt"
 
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/srv6"
 	"github.com/sbezverk/tools"
+	"github.com/sebasttiano/gobmp/pkg/srv6"
 )
 
 // BSIDType defines type of BSID value

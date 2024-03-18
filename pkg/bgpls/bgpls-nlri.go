@@ -7,10 +7,10 @@ import (
 	"net"
 
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/base"
-	"github.com/sbezverk/gobmp/pkg/sr"
-	"github.com/sbezverk/gobmp/pkg/srv6"
 	"github.com/sbezverk/tools"
+	"github.com/sebasttiano/gobmp/pkg/base"
+	"github.com/sebasttiano/gobmp/pkg/sr"
+	"github.com/sebasttiano/gobmp/pkg/srv6"
 )
 
 // NLRI defines BGP-LS NLRI object as collection of BGP-LS TLVs
@@ -460,11 +460,11 @@ func (ls *NLRI) GetUnreservedLinkBandwidthKbps() []uint64 {
 		if tlv.Type != 1091 {
 			continue
 		}
-                tlvLen := len(tlv.Value)
-                if tlvLen != 32 {
-                        glog.Errorf("BGP-LS TLV 1091 invalid length: %d, returning default\n", tlvLen)
-                        return unResrved
-                }
+		tlvLen := len(tlv.Value)
+		if tlvLen != 32 {
+			glog.Errorf("BGP-LS TLV 1091 invalid length: %d, returning default\n", tlvLen)
+			return unResrved
+		}
 		for i, p := 0, 0; p < tlvLen; i, p = i+1, p+4 {
 			unResrved[i] = uint64(math.Float32frombits(binary.BigEndian.Uint32(tlv.Value[p:p+4])) * 8 / 1000)
 		}
@@ -628,7 +628,8 @@ func (ls *NLRI) GetUnidirLinkDelay() uint32 {
 }
 
 // GetUnidirLinkDelayMinMax returns minimum and maximum delay values between two
-//   directly connected IGP link-state neighbors of MUnidirectional Link Delay
+//
+//	directly connected IGP link-state neighbors of MUnidirectional Link Delay
 func (ls *NLRI) GetUnidirLinkDelayMinMax() []uint32 {
 	for _, tlv := range ls.LS {
 		if tlv.Type != 1115 {

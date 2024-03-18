@@ -6,10 +6,10 @@ import (
 	"net"
 
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/bmp"
-	"github.com/sbezverk/gobmp/pkg/message"
-	"github.com/sbezverk/gobmp/pkg/parser"
-	"github.com/sbezverk/gobmp/pkg/pub"
+	"github.com/sebasttiano/gobmp/pkg/bmp"
+	"github.com/sebasttiano/gobmp/pkg/message"
+	"github.com/sebasttiano/gobmp/pkg/parser"
+	"github.com/sebasttiano/gobmp/pkg/pub"
 )
 
 // BMPServer defines methods to manage BMP Server

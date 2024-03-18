@@ -8,9 +8,9 @@ import (
 	"strings"
 
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/bmp"
-	"github.com/sbezverk/gobmp/pkg/kafka"
-	bmp_message "github.com/sbezverk/gobmp/pkg/message"
+	"github.com/sebasttiano/gobmp/pkg/bmp"
+	"github.com/sebasttiano/gobmp/pkg/kafka"
+	bmp_message "github.com/sebasttiano/gobmp/pkg/message"
 )
 
 func buildMessgesMap(b []byte) (map[int][][]byte, error) {

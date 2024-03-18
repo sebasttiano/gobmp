@@ -5,9 +5,9 @@ import (
 	"fmt"
 
 	"github.com/golang/glog"
-	"github.com/sbezverk/gobmp/pkg/base"
-	"github.com/sbezverk/gobmp/pkg/sr"
 	"github.com/sbezverk/tools"
+	"github.com/sebasttiano/gobmp/pkg/base"
+	"github.com/sebasttiano/gobmp/pkg/sr"
 )
 
 // PrefixAttrTLVs defines a struvture for Prefix Attributes as defined in the following RFC proposal:
@@ -218,7 +218,7 @@ type ISISFlags struct {
 	NFlag bool `json:"n_flag"`
 }
 
-//GetPrefixAttrFlagsByte returns a byte represenation for ISIS flags
+// GetPrefixAttrFlagsByte returns a byte represenation for ISIS flags
 func (f *ISISFlags) GetPrefixAttrFlagsByte() byte {
 	b := byte(0)
 	if f.XFlag {
@@ -241,7 +241,7 @@ type OSPFFlags struct {
 	NFlag bool `json:"n_flag"`
 }
 
-//GetPrefixAttrFlagsByte returns a byte represenation for OSPF flags
+// GetPrefixAttrFlagsByte returns a byte represenation for OSPF flags
 func (f *OSPFFlags) GetPrefixAttrFlagsByte() byte {
 	b := byte(0)
 
@@ -255,7 +255,8 @@ func (f *OSPFFlags) GetPrefixAttrFlagsByte() byte {
 	return b
 }
 
-//   0  1  2  3  4  5  6  7
+//	0  1  2  3  4  5  6  7
+//
 // +--+--+--+--+--+--+--+--+
 // |  |  | N|DN| P| x|LA|NU|
 // +--+--+--+--+--+--+--+--+
@@ -268,7 +269,7 @@ type OSPFv3Flags struct {
 	NUFlag bool `json:"nu_flag"`
 }
 
-//GetPrefixAttrFlagsByte returns a byte represenation for OSPF flags
+// GetPrefixAttrFlagsByte returns a byte represenation for OSPF flags
 func (f *OSPFv3Flags) GetPrefixAttrFlagsByte() byte {
 	b := byte(0)
 
@@ -296,7 +297,7 @@ type UnknownProtoFlags struct {
 	Flags byte `json:"flags"`
 }
 
-//GetPrefixAttrFlagsByte returns a byte represenation for Unknown protocol flags
+// GetPrefixAttrFlagsByte returns a byte represenation for Unknown protocol flags
 func (f *UnknownProtoFlags) GetPrefixAttrFlagsByte() byte {
 	return f.Flags
 }

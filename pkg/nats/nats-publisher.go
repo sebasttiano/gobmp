@@ -6,8 +6,8 @@ import (
 
 	"github.com/golang/glog"
 	"github.com/nats-io/nats.go"
-	"github.com/sbezverk/gobmp/pkg/bmp"
-	"github.com/sbezverk/gobmp/pkg/pub"
+	"github.com/sebasttiano/gobmp/pkg/bmp"
+	"github.com/sebasttiano/gobmp/pkg/pub"
 )
 
 // Define constants for each topic name

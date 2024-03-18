@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/sbezverk/gobmp/pkg/bgp"
-	"github.com/sbezverk/gobmp/pkg/bmp"
+	"github.com/sebasttiano/gobmp/pkg/bgp"
+	"github.com/sebasttiano/gobmp/pkg/bmp"
 )
 
 // l3vpn process MP_REACH_NLRI AFI 1/2 SAFI 128 update message and returns
